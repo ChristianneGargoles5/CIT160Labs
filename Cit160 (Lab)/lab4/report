@@ -1,0 +1,33 @@
+
+Laboratory Submission for lab4
+
+Name:        
+Email:       
+Name of Lab: Enviroment, Variables and Quoting
+
+Started on:  Tue Sep 24 01:30:08 UTC 2019
+Finished on: Wed Sep 25 17:43:55 UTC 2019
+
+Questions:
+    0: What element is accessed in the command above?  Arrays
+    1: What does the value of '${#piece[3]}' represent?  cit160
+    2: If N=4, what is the value of  '${piece[N]}' represent?  4
+    3: What is the value of '${items}'?  0
+    4: What is the value of '${items}'?  0
+    5: Does an index arrays have keys?  Yes
+    6: Can you use the '\!' symbol to retrieve these keys?  Yes
+    7: Can you use the '\!' symbol to retrieve these keys?  Yes
+    8: What are the keys associated with arrays, 'piece'?  {piece[1]}, {piece[2]}, {piece[3]},{piece[4]}
+    9: What is the output if weak quotes are used?  The cow jump over the moon.
+    10: Why does the output change?  The output changes because weak quotes are used for strings.
+    11: Why is the output of the two command blockes different?  Because ./script.bash does not affect the enviroment and source ./ script.bashhh puts value in the enviroment.
+    12: When what condition is the tilde expanded?  When it is echo ~
+    13: How many commands are executed within the left block?  5
+    14: How many commands are executed within the right block?  5
+    15: With printf, what does the alert (\a) do?  Nothing
+    16: Which escapes are interpreted by the shell?  The third one
+    17: What does the impact does the sequence'\\b'  have?  It ignores the first two backslash gets ignored.
+    18: Is the last quote protected by the escape?  Yes
+    19: Is a single quote special within weak quotes?  Yes
+    20: Can you escape a single quote within a strong quotes?  No
+

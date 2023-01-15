@@ -1,0 +1,51 @@
+
+Laboratory Submission for lab6
+
+Name:        Christianne Gargoles
+Email:       christianne.gargoles.439@my.csun.edu
+Name of Lab: Command Composition and I/O
+
+Started on:  Tue Oct 15 19:10:18 UTC 2019
+Finished on: Tue Oct 22 02:24:25 UTC 2019
+
+Questions:
+    0: What is the last command executed in command line #1?  echo b 
+    1: What is the last command executed in command line #2?  echo b
+    2: What is the last command executed in command line #3?  echo b 
+    3: What is the last command executed in command line #4?  echo a 
+    4: What is the value of the expression: (8 + 2) * 10 - 80 ?  20
+    5: What is the value of the expression: C-1 ?  0
+    6: What is the value of the expression: D** 2 ? 4
+    7: What is the value of the expression: D + C <= 2 ?  0
+    8: What is the value of the expression: C++ ?  1
+    9: What is the value of the expression: ++ C?  3
+    10: What is the return value of the expression: ( C == 5 || C == 2 ) ?  1
+    11: What is the return value of:(( (8 + 2) * 10 - 80 )) ?  0
+    12: What is the return value of: (( C - 1 ))?  0
+    13: What is the return value of: (( D ** 2))?  0
+    14: What is the return value of: (( D + C <= 2))?  1
+    15: What is the return value of: (( C ++))?  0
+    16: What is the return value of: (( ++ C))?  0
+    17: What is the return value of: ((C == 5 || C == 2))?  0
+    18: Does the file "/tmp/foobar" exist?  Yes
+    19: Is the "/usr/sbin"directory writable to you?  Yes
+    20: Is this file /home/cg160746/bin/submit executable?  No
+    21: Is the file "/usr/bin/printf" older than "/bin/echo"?  No
+    22: Is the string "$PATH" of zero length?  No
+    23: Is the string "$USER" have a non-zero length?  Yes
+    24: Does the string "apple" come first before "oranges"?  Yes
+    25: Is the strings "$SHELL" and "$BASH" the same length?  Yes
+    26: What is the command to create "/tmp/listing"?  ls /bin /usr/bin /usr/sbin > /tmp/listing
+    27: What is the command to create "tmp/ten"?  ls /tmp/tree/students | head > /tmp/ten
+    28: What is the command to create "/tmp/errors"?  cat /etc > /dev/null 2>/tmp/errors
+    29: What should the value of "$first" be?  130
+    30: What is the value of "$third"? 24
+    31: What should the value of "$second" be? 160
+    32: What is the value of "$fourth"? 2
+    33: How many filenames contain the string "$LASTNAME"? 5
+    34: Where did the output of 'echo' command go?  To there designated terminals
+    35: What output appeared in third window?  cat:/etc/....
+    36: What effect did the * have in the file name: /etc/*? it add user to its configuration
+    37: When did the first 'ls' command appear to finish? When the output came out.
+    38: Who cam read and/or write to /tmp/my.pipe?  user
+

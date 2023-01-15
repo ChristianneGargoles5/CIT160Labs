@@ -1,0 +1,46 @@
+
+Laboratory Submission for lab3
+
+Name:        
+Email:       
+Name of Lab: Command Syntax
+
+Started on:  Mon Sep 16 23:37:53 UTC 2019
+Finished on: Mon Sep 23 17:29:09 UTC 2019
+
+Questions:
+    0: What is printed out when you execute the above command?  Nothing
+    1: What is the return value of the above command?  It doesn't exist. Because having double parenthesis gets sent out and not to Z.
+    2: What is the value of 'year'?  2018
+    3: What is the value of 'hour'?  11
+    4: What is the value of 'rest' ?  cit160/lab3
+    5: What is the command to answer Question #1?  IFS= "@" read user domain
+    6: What is the command to answer Question #2?  IFS=" " read area code
+    7: What is the command to answer Question #3?  IFS="." read whole dollar
+    8: What is the command to answer Question #4?  IFS='E' read number expo
+    9: What is the return value for the previous command line?  1
+    10: What is the return value for the previous command line?  1
+    11: What is the return value of 'false & true'?  sleep 3
+    12: What is the return value of 'false && true'?  1
+    13: What program does the plain name, 'touch' now refer?  games
+    14: Is the command 'll' an alias, builtin, function or program  alias
+    15: Is 'lab_report' an alias, builtin, function or program?  builtin
+    16: Is 'grep' an alias, builtin, function or program?  builtin
+    17: Is 'gzip' an alias, builtin, function or program?  program
+    18: Is 'read' an alias, builtin, function or program?  builtin
+    19: Is 'case' an alias, builtin, function or program?  program
+    20: What is the output of the command 'now' ?  'date +"%r"'
+    21: What does the command 'up' do?  'cd ..'
+    22: What does the command 'rm' do?  'rm -i'
+    23: What was the output of the command 'pwd' from above?  /home/cg160746/cit160/lab10
+    24: Is the command 'cd' a builtin?  Yes
+    25: Ia the command 'source' a builtin?  Yes
+    26: Which files are not ignored by the 'ls -a'?  root, myFile.
+    27: How many options are set on the command 'ls -lFa'?  32
+    28: Why did we add the execute bit to 'parameter.bash'?  Because it is an additional path ways.
+    29: Why did we add the execute bit to 'parameter.bash'?  Because it is an additional path ways.
+    30: What is the value of '$5' for command #1?  /home/cg160746/cit160/bin/touch
+    31: Do both tildes ('~') get expanded in Command #2?  No
+    32: Is '+x' an option or an agrument in Command #3?  Option
+    33: How many parameters in Command #4?  4
+

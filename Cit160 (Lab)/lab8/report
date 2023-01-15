@@ -1,0 +1,49 @@
+
+Laboratory Submission for lab8
+
+Name:        Christianne Gargoles
+Email:       christianne.gargoles.439
+Name of Lab: Encoding, Compression, and Encryption
+
+Started on:  Wed Nov 13 16:18:35 UTC 2019
+Finished on: Mon Nov 18 18:29:48 UTC 2019
+
+Questions:
+    0: Explain the difference in usage of the 'scp' and 'cp' command from above?  The difference in usage of the 'scp' and 'cp' command from above is that 'scp' copies file(s) between servers in a secure way as for 'cp' copies the files or group files or directory.
+    1: What impact does that -q option have on the ssh command?  The impact that -q option have on the ssh command is that it output the date right away.
+    2: What is the base64 of your name. i.e., cg160746?  The base64 of my name is Y2cxNjA3NDYK
+    3: The decoded value of Y29mZmVlCg== is?  coffeH
+    4: Which command required the utilized the kernel the most?  The command required the kernel the most is ssh time scp -q ssh.sandbox.csun.edu:steve/cit160/lab8/* .>/dev/null
+    5: Which command took the most time to execute in real time?  The command that took the most time to execute in real time is time sleep 10
+    6: Which command induced the least amount of work?  time cd ~/cit160/lab8
+    7: Which command, compress or gzip, compresses the most?  gzip
+    8: What was the compression rate for the 'compress' command?  The compression rate for the 'compress' command is 14145.
+    9: What was the compression rate for the 'gzip' command?  The compression rate for the 'gzip' command? is 4597
+    10: What was the compress ratio for the 'compress' command?  The compress ratio for the 'compress command is 3.
+    11: What was the compression ration for the 'gzip' command?  The compression ratio for the 'gzip' command is 0.
+    12: What is the default compression level for the 'gzip' command?  The default compression level for the 'gzip' command is level 1
+    13: For this file, was it worth the time to compress at the level -9?  For this file, it is not worth it the time to compress at the level -9 because it took the longest.
+    14: 20mb: Did compression result in a faster transfer time?  No the compression result in a faster transfer time.
+    15: 20mb: Which compression level reduced transfer time the most?  level 6
+    16: 1k: Did the use of compression result in a faster transfer time?  Yes, the use of compression result in a faster transfer time.
+    17: 1k: Which compression level reduced the transfer time the most?  The compression level reduced the transfer time the most is level 2
+    18: 1k: What was the compression rate for the faster transfer rate?  The compression rate for the faster transfer rate is 60
+    19: Which file, (file1, file2, file3), is the mystery file?  The mystery file is .....
+    20: What are the permissions associated with '/etc/shadow' file? The permission associated with '/etc/shadow' file are owner gets to read and write and group gets read only and others does not get access.
+    21: What is the ID of the function used to hash your password?  The ID of the function used too my password is 6
+    22: What is the salt value associated with your hashed password?  The salt value associated with my hashed password is Z405
+    23: What is your hashed password?  My hashed password is rh591mOM
+    24: What is the required salt length for the des method?  The required salt length for des method is 6 bytes when 2 expected.
+    25: What method was used to hash your 'etc/shadow' password?  The method was used to hash your '/etc/shadow' password is mkpasswd.
+    26: Does the length of the password increase security?  Yes it does, the length of the password increase security.
+    27: Does using a password based upon common words weaken security?  Yes, using a password based upon common words weaken security.
+    28: Does exposing the /etc/shadow file weaken security?  Yes, exposing the /etc/shadow file weaken security.
+    29:  Does having a random salt increase security?  Yes, having a random salt increase security.
+    30: What is the first line of the public.key file?  The first line of the public.key file is MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIk.
+    31: Is the public key also stored within the private.key file? No, the public key is not stored within the private.key file.
+    32: Are your ssh keys stored in using the PEM format?  No, my ssh keys stored in using the PEM format.
+    33: What is the size of the file: 'plain'?  The size of the file: 'plain' is 64
+    34: What is the size of the file: 'cypher'?  The size of the file is 64
+    35: Would the double encrypted message by larger than the original?  Yes, it would double encrypted message by larger that the original.
+    36: When is our final?  The final exam is schedule for December 11, 2019 at 10:30am.
+

@@ -1,0 +1,36 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 15 Apr 2019 21:12:45 GMT
+Content-Type: text/html; charset=utf-8
+Connection: keep-alive
+X-header-test:
+Drupal-Cache: HIT
+Content-Language: en
+X-Frame-Options: SAMEORIGIN
+X-UA-Compatible: IE=Edge,chrome=1
+Cache-Control: public, max-age=21600
+Last-Modified: Mon, 15 Apr 2019 18:16:03 GMT
+Expires: Sun, 19 Nov 1978 05:00:00 GMT
+Vary: Cookie,Accept-Encoding
+X-AH-Environment: prod
+Age: 10598
+ETag: W/"1555352163.564-0"
+Via: varnish
+X-Cache: HIT
+X-Cache-Hits: 8684
+Accept-Ranges: bytes
+Set-Cookie: BIGipServerSF_HTTPS_Candidate=2948199222.47873.0000;
+Date: Mon, 15 Apr 2019 21:12:45 GMT
+Content-Type: text/html; charset=utf-8
+Connection: keep-alive
+X-UA-Compatible: IE=Edge,chrome=1
+X-Generator: Drupal 7 (http://drupal.org)
+Cache-Control: public, max-age=21600
+X-AH-Environment: prod
+Age: 10598
+ETag: W/"1555352163.564-0"
+X-Cache: HIT
+X-Cache-Hits: 8684
+Accept-Ranges: bytes
+Set-Cookie: HTTPS_Candidate=2948199222.47873.0000; path=/; Httponly; Secure
+

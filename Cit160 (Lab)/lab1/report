@@ -1,0 +1,24 @@
+
+Laboratory Submission for lab1
+
+Name:        
+Email:       
+Name of Lab: Command Line Primer
+
+Started on:  Sat Aug 31 16:47:46 UTC 2019
+Finished on: Thu Sep  5 01:35:56 UTC 2019
+
+Questions:
+    0: What does the command 'docker cp cit160:/etc/hostname' do?  The docker enviroment provides a special command to provide you with the ability to copy a filee between the laptop andd container.
+    1: Did you read the paragraph above?  Yes
+    2: Where are the host-specific configuration fileslocated?  /etc
+    3: What files are typical stored within the /home directory?  IT contains saved files, personal setting, etc.
+    4: Where are the log files typically stored?  /var/log
+    5: What's your current working directory?  ~/cit160/lab1
+    6: Is the command 'cd' equivalent to the command 'cd ~'?  Yes
+    7: What command prints files in reverse?  tac
+    8: What does the '-p' option to the 'mkdir' command do?  It creates sub-directories of a directory. It will create parent directory firstst,if it doesn't exist. But if it already exist, then it will not print an ererror message and will move further to create a sub-directories.
+    9: What does the '-i' option to the 'rm' command do?  Removes prompt before every removal.
+    10: What directory is returned from the 'pwd' command above?  The 'pwd' command report the full path to the current directory.
+    11: What is the name of the CIT160 container?  The default directory, is the home directory on the server ssh.sandbox.csun.edu.
+

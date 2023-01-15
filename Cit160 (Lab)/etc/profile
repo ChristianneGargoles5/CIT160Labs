@@ -1,0 +1,322 @@
+#! /bin/bash
+
+# This BASH script is intended to support the laboratory assignments associated with CIT160.
+# The script provides a number of routines (functions) that
+#   1. poses a question to the student
+#   2. saves these responses
+#   3. generates a report for submission
+#
+
+# This script should be involved as part of the login process.
+CLASS=cit160
+CLASS_PROFILE="${HOME}/${CLASS}/etc/profile"
+PROF="steve"
+
+# The file structure for class is as follows:
+#  $HOME:        Home directory of the student
+#  $HOME/$CLASS: Home directory for the class
+#      etc:      The generic etc directory for the class
+#      bin:      The generic bin directory for the class
+#      lab*:     A specific directory of a laboratory assignment, e.g., lab1
+#        .env:   The environment file for the particle lab
+
+############################
+# Primary functions include:
+#
+# class_setup:
+#      Must be used to setup or reset the environment for the class
+#
+# lab_start:
+#      Must be used as the first step to start or resume a lab
+# lab_reset:
+#      Used to restart a lab from scratch
+#
+# lab_save:
+#      Must be used to save the status of the lab
+#
+# ask:
+#      A routine that is used during a lab to pose a question to the student
+#
+# lab_report:
+#      A routine to generate a report for a lab
+#
+##############################
+# Auxillary functions include:
+#
+# lab_variables_saved:
+#      Used to view the lab variables that have been saved in the .env file
+# lab_variables_reset:
+#      Used to reset all current lab variables within the environment
+# lab_variables_print:
+#      Used to print all the lab variables within then environment
+
+	
+
+
+
+# Setup the Directory structure, profile information, etc. for CIT160
+function class_setup () {
+    if [ -d /mnt/laptop-cit160 -a ! -d ~/${CLASS} ] ; then 
+	ln -s /mnt/laptop-cit160 ~/${CLASS}
+    else
+	if [[ $(hostname) != 'ssh' ]] ; then
+	    echo "Error in container creation"
+	    exit 1
+	fi
+	mkdir -p ~/${CLASS}
+    fi
+    
+   mkdir -p ~/${CLASS}/bin
+   mkdir -p ~/${CLASS}/etc
+   scp ssh.sandbox.csun.edu:~${PROF}/${CLASS}/etc/profile ${CLASS_PROFILE}
+   grep --silent "source ${CLASS_PROFILE}" ~/.profile || \
+       echo "source ${CLASS_PROFILE}" >> ~/.profile
+   source ${CLASS_PROFILE}
+
+   return 0
+}
+export -f class_setup
+
+
+
+# The lab variables are stored within a .env file for each specific lab
+# I.e., ${HOME}/${CLASS}/${LAB_LABEL}/.env
+
+function lab_variables_reset () {
+    unset LAB_LABEL        ; declare -gx  LAB_LABEL
+    unset LAB_NAME         ; declare -gx  LAB_NAME
+    unset STARTED          ; declare -gx  STARTED
+    unset FINISHED         ; declare -gx  FINISHED
+    unset CURRENT_QUESTION ; declare -gxi CURRENT_QUESTION
+    unset questions        ; declare -gxa  questions
+    unset answers          ; declare -gxA  answers
+
+    return 0
+}
+export -f lab_variables_reset
+
+function lab_variables_print () {
+    # Print out all the declarations of the variables
+    # Ensure the -g option is provided to define things in the global scope
+    {
+	declare -p LAB_LABEL
+	declare -p LAB_NAME
+	declare -p STARTED
+	declare -p FINISHED
+	declare -p CURRENT_QUESTION
+	declare -p questions
+	declare -p answers
+    } 2>/dev/null  | sed 's/-/-g/'
+}
+
+function lab_save () {
+    [[ -z ${LAB_LABEL} ]]  && { echo "No current lab to save." ; return 1 ; }
+    
+    lab_variables_print > ${HOME}/${CLASS}/${LAB_LABEL}/.env
+    history -w        # Write the history to the file
+    
+    return 0
+}
+export -f lab_save
+
+
+function lab_reset () {
+    [[ -z ${LAB_LABEL} ]]  && { echo "No current lab to reset." ; return 1 ; }
+
+    {
+	declare -u _ans="Y"
+	read -p "Are you sure you want to reset ${LAB_LABEL} (Y/n)? " _ans
+    	[[ ${_ans} != "Y" ]] || return 1
+    }
+    
+    rm -f ${HOME}/${CLASS}/${LAB_LABEL}/.env
+    lab_variables_reset
+    history -c      # Clear the history stored in memory
+    history -w      # Write the history (empty) to the file
+    
+    return 0
+}
+export -f lab_reset
+
+
+function lab_start () {
+    _id="lab${1}"
+
+    if [[ -n ${LAB_LABEL} ]] ; then
+	echo "Saving ${LAB_LABEL}"
+	lab_save
+    fi
+    
+    if [[ "${_id}" == "lab" ]] ; then
+	echo "Usage: lab_start <lab-id>"
+	echo "E.g.:  lab_start 1"
+	return 1
+    else 
+	echo "Setting up ${HOME}/${CLASS}/${_id}"
+    fi 
+    
+    mkdir -p ${HOME}/${CLASS}/${_id}
+    lab_variables_reset
+
+    if [[ ! -f ${HOME}/${CLASS}/${_id}/.env ]] ; then
+	# create the .env
+
+	LAB_LABEL=${_id}
+	read -p "Enter the lab name: " LAB_NAME
+	STARTED=$(date)
+
+	lab_save
+    fi
+
+    source ${HOME}/${CLASS}/${_id}/.env
+    HISTFILE="${HOME}/${CLASS}/${_id}/.history"
+    HISTTIMEFORMAT="%F %T: "
+    HISTCONTROL=
+    history -c
+    history -r
+    return 0
+}
+export -f lab_start
+
+
+function lab_current () {
+    [[ -z ${LAB_LABEL} ]]  && { echo "No current lab." ; return 1 ; }
+
+    echo ${LAB_LABEL}
+    return 0
+}
+export -f lab_current
+
+function lab_variables_saved () {
+    [[ -z ${LAB_LABEL} ]]  && { echo "No current lab." ; return 1 ; }
+    
+    cat ${HOME}/${CLASS}/${LAB_LABEL}/.env
+    return 0
+}
+export -f lab_variables_saved
+
+
+# Ask Question
+function ask() {
+    _the_question="$1"
+
+    [[ -z ${LAB_LABEL} ]]  && { echo "No current lab." ; return 1 ; }
+    [[ -z ${_the_question} ]] && return 1
+    
+    questions[${CURRENT_QUESTION}]=${_the_question}
+
+    read -p "${_the_question} " _the_answer
+    answers[${_the_question}]="${_the_answer}"
+    (( CURRENT_QUESTION ++ ))
+
+    return 0
+}
+export -f ask
+
+
+# Report Answers
+#
+# Issue:  A student may type the wrong answer to the question.
+#         The student may repose the same question with the correct answer.
+#         The question, however, will appear more than once in the report.
+#         The last answer provided for said question, however,
+#            is set of all occurrence of said question
+# Issue:  The number of questions is always monotically increase.
+#         Hence, mistype questions are provide a number
+#         Hence, mutiple submissions of a question generate multiple numbers
+function lab_report() {
+    [[ -z ${LAB_LABEL} ]]  && { echo "No current lab to report." ; return 1 ; }
+
+    FINISHED=$(date)
+
+    { 
+	echo 
+	echo "Laboratory Submission for ${LAB_LABEL}"
+	echo ""
+	echo "Name:        ${NAME}"
+	echo "Email:       ${EMAIL}"
+	echo "Name of Lab: ${LAB_NAME}"
+	echo
+	echo "Started on:  ${STARTED}"
+	echo "Finished on: ${FINISHED}"
+	echo
+	
+	_i=0
+	echo "Questions:"
+	while [[ ${_i} -lt ${CURRENT_QUESTION} ]] ; do
+	    echo "    ${_i}: ${questions[${_i}]} ${answers[${questions[${_i}]}]}"
+	    (( _i ++ ))
+	done
+	echo
+	lab_save
+    } | tee ${HOME}/${CLASS}/${LAB_LABEL}/report
+    return 0
+}
+export -f lab_report
+
+
+# Given an input file of email address of students
+# It builds file structure in /tmp/tree
+# This structure is of the following form:
+# tree/
+#   students/email_address/
+#      information
+#      first --> /tmp/tree/F/email_address  where F is the first letter in the First name
+#      last -->  /tmp/tree/L/email_address  where L is the first letter in the Last name
+#      number --> /tmp/tree/N/email_address where N is the first number in the number
+#   X/  where X is either F, L, or N from above
+#    email_address/
+#       information
+#       home  --> /tmp/tree/email_address
+#
+#   email address is the email addres of the student (without the @csun.edu
+#   information is a file that contains the following values
+#      Firstname: zohrab
+#      Lastname: terkarapetyan
+#      Number: 633
+#      Email: zohrab.terkarapetyan.633@my.csun.edu
+
+
+function mk_cd () {
+    mkdir -p $1
+    cd $1
+}
+
+function build_tree () {
+
+    TOP=/tmp
+
+    pushd .
+    while IFS=. read _first _last _number ; do
+
+	email="${_first}.${_last}.${_number}"
+	F_first=${TOP}/tree/${_first:0:1}
+	L_last=${TOP}/tree/${_last:0:1}
+	N_number=${TOP}/tree/${_number:0:1}
+
+	{ # Build the information in the student directory
+	    mk_cd ${TOP}/tree/students/${email}
+            cat >information <<EOF
+Firstname: ${_first}
+Lastname: ${_last}                                                                                                 
+Number: ${_number}
+Email: ${email}@my.csun.edu  
+EOF
+	    ln -s ${F_first} first
+	    ln -s ${L_last} last
+	    ln -s ${N_number} number
+	}
+
+	for link_point in ${F_first} ${L_last} ${N_number} ; do
+	    mk_cd ${link_point}/${email} 
+	    ln -s ${TOP}/tree/students/${email} home 
+	    ln    ${TOP}/tree/students/${email}/information information
+
+	done
+    done
+
+    popd
+    tar -cf filesystem.tar -C ${TOP} tree
+    # rm -t ${TOP}/tree
+}
+

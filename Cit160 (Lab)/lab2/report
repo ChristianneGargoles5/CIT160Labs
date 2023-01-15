@@ -1,0 +1,19 @@
+
+Laboratory Submission for lab2
+
+Name:        
+Email:       
+Name of Lab: Expressions: Boolean, Arithmetic, and Conditional
+
+Started on:  Sun Sep  8 23:31:49 UTC 2019
+Finished on: Tue Sep 10 23:35:30 UTC 2019
+
+Questions:
+    0: What is the default value of umask?  0002
+    1: What is the decimal value for 3#10212?  104
+    2: What is the decimal value for 4#2310?  180
+    3: What is the octal value for 3#10212?  150
+    4: What is the value of '5 < 2'?  1
+    5: Are the following values the same: 012 and 0xA?  No
+    6: What is the string you provided to the let command above?  Conversion formula from Fahrenheit to Celsius.
+
